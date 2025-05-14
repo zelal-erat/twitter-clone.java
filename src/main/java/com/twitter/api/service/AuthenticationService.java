@@ -30,6 +30,10 @@ public class AuthenticationService {
             throw new AppException("Username already exists.", HttpStatus.BAD_REQUEST);
         }
 
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new AppException("Email already in use.", HttpStatus.BAD_REQUEST);
+        }
+
         User user = new User();
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
@@ -39,6 +43,7 @@ public class AuthenticationService {
 
         return new RegisterResponse("Kayıt başarılı!", savedUser.getId());
     }
+
 
     public LoginResponse login(LoginRequest request) {
         User user = userRepository.findByUsername(request.getUsername())

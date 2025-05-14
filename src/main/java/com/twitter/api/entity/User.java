@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "user", schema = "twitter")
+@Table(name = "\"user\"", schema = "twitter")
 public class User implements UserDetails {
 
     @Id
@@ -30,7 +30,7 @@ public class User implements UserDetails {
     @Pattern(regexp = "^[a-zA-Z0-9._-]+$", message = "Username can only contain letters, numbers, dots, underscores and hyphens")
     private String username;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     @NotBlank(message = "Email is required")
     @Email(message = "Please provide a valid email address")
     private String email;

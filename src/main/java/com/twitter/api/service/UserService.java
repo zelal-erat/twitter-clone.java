@@ -17,6 +17,6 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("Memeber is not valid"));
+        return userRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("Member is not valid"));
     }
 }

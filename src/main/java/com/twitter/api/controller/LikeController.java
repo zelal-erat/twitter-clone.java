@@ -10,13 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/like")
+@RequestMapping
 @RequiredArgsConstructor
 public class LikeController {
 
     private final LikeService likeService;
 
-    @PostMapping
+    @PostMapping("/like")
     public ResponseEntity<LikeResponse> likeTweet(@Valid @RequestBody LikeRequest request) {
         return ResponseEntity.ok(likeService.likeTweet(request));
     }
