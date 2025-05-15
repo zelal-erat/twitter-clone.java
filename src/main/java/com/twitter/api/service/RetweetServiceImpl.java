@@ -35,7 +35,10 @@ public class RetweetServiceImpl implements RetweetService {
 
         // Yeni retweet oluştur
         Retweet retweet = new Retweet();
+        retweet.setUser(user);
+        retweet.setTweet(tweet);
         Retweet savedRetweet = retweetRepository.save(retweet);
+
 
         return toResponse(savedRetweet);
     }
