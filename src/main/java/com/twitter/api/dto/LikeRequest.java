@@ -1,14 +1,14 @@
 package com.twitter.api.dto;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 
+@Data
+@AllArgsConstructor
+public class LikeRequest {
 
-public record LikeRequest(
         @NotNull
-        Long userId,
-        @NotNull
-        Long tweetId
-
-) {}
+        Long tweetId;
+}

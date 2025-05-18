@@ -30,6 +30,8 @@ public class Tweet {
      @Column(name = "created_at")
      private LocalDateTime createdAt;
 
+
+     //entity tabanına kaydedilmeden öne
      @PrePersist
      protected void onCreate() {
          createdAt = LocalDateTime.now();

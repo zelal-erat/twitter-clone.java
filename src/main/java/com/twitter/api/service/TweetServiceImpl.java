@@ -33,6 +33,7 @@ public class TweetServiceImpl implements TweetService {
 
         Tweet savedTweet = tweetRepository.save(tweet);
 
+        // 3. Tweet entity'sini TweetResponse DTO'suna dönüştürüp geri döner
         return convertToResponse(savedTweet);
     }
 

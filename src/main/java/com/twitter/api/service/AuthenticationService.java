@@ -25,11 +25,14 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
+
+    // 1. Kullanıcı adı daha önce var mı diye kontrol et
     public RegisterResponse register(RegisterRequest request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new AppException("Username already exists.", HttpStatus.BAD_REQUEST);
         }
 
+        // 2. Email adresi daha önce kullanılmış mı diye kontrol et
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new AppException("Email already in use.", HttpStatus.BAD_REQUEST);
         }

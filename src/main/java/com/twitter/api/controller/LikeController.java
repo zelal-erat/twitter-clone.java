@@ -1,12 +1,13 @@
 package com.twitter.api.controller;
 
-
 import com.twitter.api.dto.LikeRequest;
 import com.twitter.api.dto.LikeResponse;
+import com.twitter.api.dto.MessageResponse;
 import com.twitter.api.service.LikeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,13 +18,17 @@ public class LikeController {
     private final LikeService likeService;
 
     @PostMapping("/like")
-    public ResponseEntity<LikeResponse> likeTweet(@Valid @RequestBody LikeRequest request) {
-        return ResponseEntity.ok(likeService.likeTweet(request));
+    public ResponseEntity<LikeResponse> likeTweet(@Valid @RequestBody LikeRequest request,
+                                                  Authentication authentication) {
+        String username = authentication.getName();
+        return ResponseEntity.ok(likeService.likeTweet(request, username));
     }
 
-    @PostMapping("/dislike")
-    public ResponseEntity<Void> dislikeTweet(@Valid @RequestBody LikeRequest request) {
-        likeService.dislikeTweet(request);
-        return ResponseEntity.ok().build();
+    @DeleteMapping("/dislike")
+    public ResponseEntity<MessageResponse> dislikeTweet(@Valid @RequestBody LikeRequest request,
+                                                        Authentication authentication) {
+        String username = authentication.getName();
+        MessageResponse response = likeService.dislikeTweet(request, username);
+        return ResponseEntity.ok(response);
     }
 }

@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RetweetRequest {
-    @NotNull(message = "Kullanıcı ID'si boş olamaz")
-    private Long userId;
+
 
     @NotNull(message = "Tweet ID'si boş olamaz")
     private Long tweetId;

@@ -5,15 +5,7 @@ import com.twitter.api.dto.RetweetResponse;
 
 public interface RetweetService {
 
-    /**
-     * Kullanıcının bir tweeti retweet etmesini sağlar.
-     * Aynı tweeti tekrar retweet edemez.
-     */
-    RetweetResponse retweet(RetweetRequest request);
+    RetweetResponse retweet(RetweetRequest request, String username);
 
-    /**
-     * Kullanıcının retweetini silmesini sağlar.
-     * Sadece ilgili kullanıcı kendi retweetini silebilir.
-     */
-    void deleteRetweet(Long userId, Long tweetId);
+    void deleteRetweet(Long retweetId, String username);
 }

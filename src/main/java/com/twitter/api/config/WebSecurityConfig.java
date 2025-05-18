@@ -27,6 +27,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
        return http
                 .csrf(csrf -> csrf.disable())
+               // .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/register", "/login").permitAll()
                         .anyRequest().authenticated()
@@ -39,13 +40,36 @@ public class WebSecurityConfig {
 
     }
 
+    // @Bean
+    //    public CorsConfigurationSource corsConfigurationSource() {
+    //        CorsConfiguration configuration = new CorsConfiguration();
+    //
+    //        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3200")); // React portu
+    //        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    //        configuration.setAllowedHeaders(Collections.singletonList("*"));
+    //        configuration.setAllowCredentials(true); // eğer token veya cookie varsa
+    //
+    //        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    //        source.registerCorsConfiguration("/**", configuration);
+    //        return source;
+    //    }
+
     @Bean
     public AuthenticationManager authManager(UserDetailsService userDetailsService){
-        DaoAuthenticationProvider provider= new DaoAuthenticationProvider();
+
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        // Veritabanı kullanıcı doğrulama işlemi
+
         provider.setUserDetailsService(userDetailsService);
+        // Kullanıcı bilgilerini veritabanından alacak olan servis atanıyor
+
         provider.setPasswordEncoder(passwordEncoder());
+        // Kullanıcı şifresinin doğrulanması için şifreleme algoritması (BCrypt) atanıyor
+
         return new ProviderManager(provider);
+        // Oluşturulan provider, bir AuthenticationManager olarak döndürülüyor
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

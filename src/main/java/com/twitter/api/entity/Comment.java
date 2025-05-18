@@ -26,14 +26,15 @@ public class Comment {
     private String content;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)  // Kullanıcı ID'si NULL olamaz
     @NotNull(message = "Kullanıcı ID boş olamaz.")
     private User user;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "tweet_id")
+    @JoinColumn(name = "tweet_id", nullable = false)  // Tweet ID'si NULL olamaz
     @NotNull(message = "Tweet ID boş olamaz.")
     private Tweet tweet;
+
 
 
 

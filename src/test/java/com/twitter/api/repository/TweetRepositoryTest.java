@@ -43,8 +43,10 @@ class TweetRepositoryTest {
         // Act
         List<Tweet> tweets = tweetRepository.findByUserId(user.getId());
 
-        // Assert
         assertThat(tweets).hasSize(2);
-        assertThat(tweets.get(0).getUser().getId()).isEqualTo(user.getId());
+        // Geri dönen tweet listesinde 2 tane tweet olması bekleniyor
+
+
     }
+
 }

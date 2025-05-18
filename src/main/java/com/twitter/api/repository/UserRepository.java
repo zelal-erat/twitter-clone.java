@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    // Username ile kullanıcıyı bulmak için (login için şart)
+    //  kullanıcıyı bulmak için
     @Query("select u from User u where u.username= :username")
     Optional<User> findByUsername(String username);
     Optional<User> findByEmail(String email);

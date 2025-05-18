@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 public interface RetweetRepository extends JpaRepository<Retweet, Long> {
     Optional<Retweet> findByUserAndTweet(User user, Tweet tweet);
-    void deleteByUserAndTweet(User user, Tweet tweet);
+
 }

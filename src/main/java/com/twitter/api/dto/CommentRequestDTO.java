@@ -11,10 +11,7 @@ public class CommentRequestDTO {
     @NotBlank(message = "Yorum içeriği boş olamaz.")
     private String content;
 
-    @NotNull(message = "Kullanıcı ID boş olamaz.")
-    private Long userId;
 
-    @NotNull(message = "Tweet ID boş olamaz.")
     private Long tweetId;
 
 }
